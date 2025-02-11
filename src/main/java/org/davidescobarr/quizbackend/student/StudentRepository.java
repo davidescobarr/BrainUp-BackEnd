@@ -1,4 +1,4 @@
-package com.example.quiz.student;
+package org.davidescobarr.quizbackend.student;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

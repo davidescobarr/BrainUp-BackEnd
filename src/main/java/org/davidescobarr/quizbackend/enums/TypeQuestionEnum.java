@@ -1,4 +1,11 @@
 package org.davidescobarr.quizbackend.enums;
 
-public class TypeQuestionEnum {
+public enum TypeQuestionEnum {
+    ONE_VARIANT,
+    MANY_VARIANTS;
+
+    @Override
+    public String toString() {
+        return super.toString().toLowerCase();
+    }
 }

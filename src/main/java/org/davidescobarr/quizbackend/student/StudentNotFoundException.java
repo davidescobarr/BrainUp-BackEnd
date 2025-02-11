@@ -1,4 +1,4 @@
-package com.example.quiz.student;
+package org.davidescobarr.quizbackend.student;
 
 public class StudentNotFoundException extends RuntimeException {
 
