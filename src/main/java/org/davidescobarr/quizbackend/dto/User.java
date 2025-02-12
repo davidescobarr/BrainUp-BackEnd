@@ -1,17 +1,16 @@
 package org.davidescobarr.quizbackend.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.davidescobarr.quizbackend.enums.RolesEnum;
+import org.davidescobarr.quizbackend.util.security.SecurityField;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -24,13 +23,25 @@ import java.util.List;
 public class User implements UserDetails {
     @Id
     @GeneratedValue
+    @SecurityField
     private Long id;
     private String username;
+    @SecurityField
     private String email;
+    @SecurityField
     private String password;
+    @SecurityField
     private String ip;
     private Date create_date;
     private RolesEnum role;
+    @OneToMany
+    @SecurityField
+    private ArrayList<PassedTestUser> passedTests;
+    @OneToMany
+    @SecurityField
+    private ArrayList<Test> createdTests;
+    @OneToMany
+    private ArrayList<TemplateTest> templatesTest;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

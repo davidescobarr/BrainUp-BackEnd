@@ -1,17 +1,17 @@
 package org.davidescobarr.quizbackend.service;
 
 import lombok.RequiredArgsConstructor;
-import org.davidescobarr.quizbackend.dto.ChangeUserRequest;
 import org.davidescobarr.quizbackend.dto.User;
 import org.davidescobarr.quizbackend.enums.RolesEnum;
 import org.davidescobarr.quizbackend.repository.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+import static org.davidescobarr.quizbackend.util.security.SecurityFieldProcessor.secureFields;
 
 @Service
 @RequiredArgsConstructor
@@ -67,9 +67,16 @@ public class UserService {
     public User getByIdSimplify(Long id) {
         User user = getById(id);
         if(user != null) {
-            user.setPassword(null);
-            user.setId(null);
-            user.setEmail(null);
+            depersonalizationUserData(user);
+        }
+        return user;
+    }
+
+    private User depersonalizationUserData(User user) {
+        try {
+            secureFields(user);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return user;
     }
