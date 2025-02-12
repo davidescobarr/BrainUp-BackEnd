@@ -27,11 +27,9 @@ public class ExampleController {
 
     @GetMapping("/admin")
     @Operation(summary = "Доступен только авторизованным пользователям с ролью ADMIN")
+    @PreAuthorize("hasRole('ADMIN')")
     public String exampleAdmin() {
-        if(service.getCurrentUser().getRole() == RolesEnum.ADMIN) {
-            return "Hello, admin!";
-        }
-        throw new AccessDeniedException("Пользователь не админ");
+        return "Hello, admin!";
     }
 
     @GetMapping("/get-admin")
