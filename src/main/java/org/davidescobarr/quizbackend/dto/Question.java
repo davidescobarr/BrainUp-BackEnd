@@ -17,7 +17,6 @@ public class Question {
     private String name;
     private String description;
     private boolean show_correctly_answer;
-    private int order;
     private TypeQuestionEnum type;
     @OneToMany
     private ArrayList<Answer> answers = new ArrayList<Answer>();
