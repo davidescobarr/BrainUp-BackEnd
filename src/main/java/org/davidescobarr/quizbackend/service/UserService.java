@@ -66,9 +66,11 @@ public class UserService {
 
     public User getByIdSimplify(Long id) {
         User user = getById(id);
-        user.setPassword(null);
-        user.setId(null);
-        user.setEmail(null);
+        if(user != null) {
+            user.setPassword(null);
+            user.setId(null);
+            user.setEmail(null);
+        }
         return user;
     }
 

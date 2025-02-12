@@ -67,7 +67,7 @@ public class AuthenticationService {
         User changingUser = userService.getById(id);
         User user = userService.getCurrentUser();
 
-        if(user == changingUser || user.getRole() == RolesEnum.ADMIN) {
+        if(changingUser != null && (user == changingUser || user.getRole() == RolesEnum.ADMIN)) {
             changingUser.setUsername(request.getUsername());
             changingUser.setPassword(passwordEncoder.encode(request.getPassword()));
             userService.save(changingUser);
