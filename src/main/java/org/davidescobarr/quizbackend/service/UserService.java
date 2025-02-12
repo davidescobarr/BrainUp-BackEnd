@@ -71,7 +71,7 @@ public class UserService {
      */
     public User getCurrentUser() {
         // Получение имени пользователя из контекста Spring Security
-        var username = SecurityContextHolder.getContext().getAuthentication().getName();
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
         return getByUsername(username);
     }
 
@@ -83,7 +83,7 @@ public class UserService {
      */
     @Deprecated
     public void getAdmin() {
-        var user = getCurrentUser();
+        User user = getCurrentUser();
         user.setRole(RolesEnum.ADMIN);
         save(user);
     }
