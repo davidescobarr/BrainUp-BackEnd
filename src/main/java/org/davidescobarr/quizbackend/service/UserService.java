@@ -1,13 +1,17 @@
 package org.davidescobarr.quizbackend.service;
 
 import lombok.RequiredArgsConstructor;
+import org.davidescobarr.quizbackend.dto.ChangeUserRequest;
 import org.davidescobarr.quizbackend.dto.User;
 import org.davidescobarr.quizbackend.enums.RolesEnum;
 import org.davidescobarr.quizbackend.repository.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -42,6 +46,10 @@ public class UserService {
         return save(user);
     }
 
+    public List<User> findAll() {
+        return repository.findAll();
+    }
+
     /**
      * Получение пользователя по имени пользователя
      *
@@ -50,7 +58,18 @@ public class UserService {
     public User getByUsername(String username) {
         return repository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Пользователь не найден"));
+    }
 
+    public User getById(Long id) {
+        return repository.findById(id).orElse(null);
+    }
+
+    public User getByIdSimplify(Long id) {
+        User user = getById(id);
+        user.setPassword(null);
+        user.setId(null);
+        user.setEmail(null);
+        return user;
     }
 
     /**
@@ -74,7 +93,6 @@ public class UserService {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         return getByUsername(username);
     }
-
 
     /**
      * Выдача прав администратора текущему пользователю

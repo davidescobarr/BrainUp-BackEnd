@@ -28,7 +28,6 @@ public class User implements UserDetails {
     private String username;
     private String email;
     private String password;
-    private String avatarUrl;
     private String ip;
     private Date create_date;
     private RolesEnum role;
@@ -71,7 +70,6 @@ public class User implements UserDetails {
         private String name;
         private String email;
         private String password;
-        private String avatarUrl;
         private String ip;
         private Date create_date;
         private RolesEnum role;
@@ -88,11 +86,6 @@ public class User implements UserDetails {
 
         public Builder password(String password) {
             this.password = password;
-            return this;
-        }
-
-        public Builder avatarUrl(String avatarUrl) {
-            this.avatarUrl = avatarUrl;
             return this;
         }
 
@@ -116,7 +109,6 @@ public class User implements UserDetails {
             user.username = name;
             user.email = email;
             user.password = password;
-            user.avatarUrl = avatarUrl;
             user.ip = ip;
             user.create_date = create_date;
             user.role = role;

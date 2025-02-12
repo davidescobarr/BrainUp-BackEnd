@@ -1,16 +1,13 @@
 package org.davidescobarr.quizbackend.service;
 
 import lombok.RequiredArgsConstructor;
-import org.davidescobarr.quizbackend.dto.JwtAuthenticationResponse;
-import org.davidescobarr.quizbackend.dto.SignInRequest;
-import org.davidescobarr.quizbackend.dto.SignUpRequest;
+import org.davidescobarr.quizbackend.dto.*;
 import org.davidescobarr.quizbackend.enums.RolesEnum;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.davidescobarr.quizbackend.dto.User;
 
 import java.util.Date;
 
@@ -35,7 +32,6 @@ public class AuthenticationService {
                 .username(request.getUsername())
                 .email(request.getEmail())
                 .create_date(new Date())
-                .avatarUrl("")
                 .ip(request.getIp())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(RolesEnum.USER)
@@ -65,5 +61,19 @@ public class AuthenticationService {
 
         String jwt = jwtService.generateToken(user);
         return new JwtAuthenticationResponse(jwt);
+    }
+
+    public User changeUser(Long id, ChangeUserRequest request) {
+        User changingUser = userService.getById(id);
+        User user = userService.getCurrentUser();
+
+        if(user == changingUser || user.getRole() == RolesEnum.ADMIN) {
+            changingUser.setUsername(request.getUsername());
+            changingUser.setPassword(passwordEncoder.encode(request.getPassword()));
+            userService.save(changingUser);
+            return changingUser;
+        }
+
+        return null;
     }
 }
