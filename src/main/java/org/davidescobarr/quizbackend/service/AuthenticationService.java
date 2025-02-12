@@ -7,6 +7,7 @@ import org.davidescobarr.quizbackend.dto.SignUpRequest;
 import org.davidescobarr.quizbackend.enums.RolesEnum;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.davidescobarr.quizbackend.dto.User;
@@ -30,18 +31,19 @@ public class AuthenticationService {
      */
     public JwtAuthenticationResponse signUp(SignUpRequest request) {
 
-        var user = User.builder()
+        User user = User.builder()
                 .username(request.getUsername())
                 .email(request.getEmail())
                 .create_date(new Date())
                 .avatarUrl("")
+                .ip(request.getIp())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(RolesEnum.USER)
                 .build();
 
         userService.create(user);
 
-        var jwt = jwtService.generateToken(user);
+        String jwt = jwtService.generateToken(user);
         return new JwtAuthenticationResponse(jwt);
     }
 
@@ -57,11 +59,11 @@ public class AuthenticationService {
                 request.getPassword()
         ));
 
-        var user = userService
+        UserDetails user = userService
                 .userDetailsService()
                 .loadUserByUsername(request.getUsername());
 
-        var jwt = jwtService.generateToken(user);
+        String jwt = jwtService.generateToken(user);
         return new JwtAuthenticationResponse(jwt);
     }
 }

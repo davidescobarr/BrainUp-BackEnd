@@ -8,6 +8,7 @@ import org.davidescobarr.quizbackend.dto.JwtAuthenticationResponse;
 import org.davidescobarr.quizbackend.dto.SignInRequest;
 import org.davidescobarr.quizbackend.dto.SignUpRequest;
 import org.davidescobarr.quizbackend.service.AuthenticationService;
+import org.davidescobarr.quizbackend.util.HttpReqRespUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,7 @@ public class AuthController {
     @Operation(summary = "Регистрация пользователя")
     @PostMapping("/sign-up")
     public JwtAuthenticationResponse signUp(@RequestBody @Valid SignUpRequest request) {
+        request.setIp(HttpReqRespUtils.getClientIpAddressIfServletRequestExist());
         return authenticationService.signUp(request);
     }
 
