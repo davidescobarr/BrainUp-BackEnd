@@ -1,11 +1,11 @@
-package org.davidescobarr.quizbackend.dto;
+package org.davidescobarr.quizbackend.dto.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -18,13 +18,10 @@ public class Test {
     private TemplateTest template;
     private Date created_at;
     private Date started_at;
+    private Date finished_at;
     @OneToOne
     @MapsId
     private User creator;
     @OneToMany
-    private ArrayList<PassedTestUser> passedTestUsers = new ArrayList<PassedTestUser>();
-    @OneToMany
-    private ArrayList<Test> tests = new ArrayList<Test>();
-    @OneToMany
-    private ArrayList<TemplateTest> templateTests = new ArrayList<TemplateTest>();
+    private List<PassedTestUser> passedTestUsers;
 }

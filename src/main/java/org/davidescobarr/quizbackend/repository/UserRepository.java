@@ -1,6 +1,6 @@
 package org.davidescobarr.quizbackend.repository;
 
-import org.davidescobarr.quizbackend.dto.User;
+import org.davidescobarr.quizbackend.dto.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

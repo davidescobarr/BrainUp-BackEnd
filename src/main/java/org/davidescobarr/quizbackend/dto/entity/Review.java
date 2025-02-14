@@ -1,4 +1,4 @@
-package org.davidescobarr.quizbackend.dto;
+package org.davidescobarr.quizbackend.dto.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;

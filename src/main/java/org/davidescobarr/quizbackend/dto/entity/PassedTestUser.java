@@ -1,10 +1,10 @@
-package org.davidescobarr.quizbackend.dto;
+package org.davidescobarr.quizbackend.dto.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -15,5 +15,5 @@ public class PassedTestUser {
     private long id;
     private String username;
     @OneToMany
-    private ArrayList<AnswerUser> answers = new ArrayList<AnswerUser>();
+    private List<AnswerUser> answers;
 }

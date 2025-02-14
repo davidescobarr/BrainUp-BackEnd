@@ -2,13 +2,10 @@ package org.davidescobarr.quizbackend.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.davidescobarr.quizbackend.dto.ChangeUserRequest;
-import org.davidescobarr.quizbackend.dto.SignInRequest;
-import org.davidescobarr.quizbackend.dto.User;
+import org.davidescobarr.quizbackend.dto.request.ChangeUserRequest;
+import org.davidescobarr.quizbackend.dto.entity.User;
 import org.davidescobarr.quizbackend.enums.RolesEnum;
 import org.davidescobarr.quizbackend.service.AuthenticationService;
 import org.davidescobarr.quizbackend.service.UserService;

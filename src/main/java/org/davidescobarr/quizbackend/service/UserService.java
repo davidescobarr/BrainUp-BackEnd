@@ -1,7 +1,8 @@
 package org.davidescobarr.quizbackend.service;
 
 import lombok.RequiredArgsConstructor;
-import org.davidescobarr.quizbackend.dto.User;
+import org.davidescobarr.quizbackend.dto.entity.Test;
+import org.davidescobarr.quizbackend.dto.entity.User;
 import org.davidescobarr.quizbackend.enums.RolesEnum;
 import org.davidescobarr.quizbackend.repository.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -48,6 +49,11 @@ public class UserService {
 
     public List<User> findAll() {
         return repository.findAll();
+    }
+
+    public User addCreatedTest(User user, Test test) {
+        user.getCreatedTests().add(test);
+        return this.save(user);
     }
 
     /**

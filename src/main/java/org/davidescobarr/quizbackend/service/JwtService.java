@@ -6,8 +6,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.davidescobarr.quizbackend.config.ProjectConfiguration;
-import org.davidescobarr.quizbackend.config.SecurityConfiguration;
-import org.davidescobarr.quizbackend.dto.User;
+import org.davidescobarr.quizbackend.dto.entity.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 

@@ -29,7 +29,7 @@ public class HttpReqRespUtils {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         for (String header: IP_HEADER_CANDIDATES) {
             String ipList = request.getHeader(header);
-            if (ipList != null && ipList.length() != 0 && !"unknown".equalsIgnoreCase(ipList)) {
+            if (ipList != null && !ipList.isEmpty() && !"unknown".equalsIgnoreCase(ipList)) {
                 String ip = ipList.split(",")[0];
                 if (ip.equals("0:0:0:0:0:0:0:1")) ip = "127.0.0.1";
                 return ip;

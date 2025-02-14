@@ -1,4 +1,4 @@
-package org.davidescobarr.quizbackend.dto;
+package org.davidescobarr.quizbackend.dto.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -10,7 +10,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -36,12 +35,12 @@ public class User implements UserDetails {
     private RolesEnum role;
     @OneToMany
     @SecurityField
-    private ArrayList<PassedTestUser> passedTests;
+    private List<PassedTestUser> passedTests;
     @OneToMany
     @SecurityField
-    private ArrayList<Test> createdTests;
+    private List<Test> createdTests;
     @OneToMany
-    private ArrayList<TemplateTest> templatesTest;
+    private List<TemplateTest> templatesTest;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -2,6 +2,10 @@ package org.davidescobarr.quizbackend.service;
 
 import lombok.RequiredArgsConstructor;
 import org.davidescobarr.quizbackend.dto.*;
+import org.davidescobarr.quizbackend.dto.entity.User;
+import org.davidescobarr.quizbackend.dto.request.ChangeUserRequest;
+import org.davidescobarr.quizbackend.dto.request.SignInRequest;
+import org.davidescobarr.quizbackend.dto.request.SignUpRequest;
 import org.davidescobarr.quizbackend.enums.RolesEnum;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

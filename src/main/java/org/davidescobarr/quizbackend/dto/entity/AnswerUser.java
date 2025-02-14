@@ -1,8 +1,10 @@
-package org.davidescobarr.quizbackend.dto;
+package org.davidescobarr.quizbackend.dto.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -13,6 +15,6 @@ public class AnswerUser {
     private long id;
     @ManyToOne
     private Question question;
-    @ManyToOne
-    private Answer answer;
+    @ManyToMany
+    private List<Answer> answer;
 }
